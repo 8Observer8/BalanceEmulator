@@ -2,6 +2,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include "Sender.h"
 
 namespace Ui {
     class SettingsDialog;
@@ -16,8 +17,7 @@ public:
     ~SettingsDialog();
 
 signals:
-    void signalSetSettings( const QString &portName,
-                            const QString &portSpeed );
+    void signalSetSettings( const Sender &sender );
 
 private slots:
     void on_okButton_clicked();

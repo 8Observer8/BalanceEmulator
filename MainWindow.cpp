@@ -25,15 +25,11 @@ void MainWindow::on_sendButton_clicked()
     sendData( text );
 }
 
-void MainWindow::slotSetSettings( const QString &portName,
-                                  const QString &portSpeed )
+void MainWindow::slotSetSettings( const Sender &sender )
 {
     delete m_sender;
 
-    QSerialPort::BaudRate convertedPortSpeed =
-            static_cast<QSerialPort::BaudRate>( portSpeed.toInt() );
-
-    m_sender = new Sender( portName, convertedPortSpeed );
+    m_sender = new Sender( sender );
 
     try {
         m_sender->open();
@@ -48,8 +44,8 @@ void MainWindow::on_actionSettings_triggered()
 {
     SettingsDialog dialog;
     dialog.setModal( true );
-    connect( &dialog, SIGNAL( signalSetSettings( QString, QString ) ),
-             this, SLOT( slotSetSettings( QString, QString ) ) );
+    connect( &dialog, SIGNAL( signalSetSettings( Sender ) ),
+             this, SLOT( slotSetSettings( Sender ) ) );
     dialog.exec();
 }
 
@@ -58,7 +54,7 @@ void MainWindow::on_actionExit_triggered()
     this->close();
 }
 
-void MainWindow::sendData(const QString &text)
+void MainWindow::sendData( const QString &text )
 {
     QByteArray data;
     data.append( text );

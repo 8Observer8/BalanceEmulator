@@ -15,7 +15,16 @@ public:
             QSerialPort::StopBits stopBits = QSerialPort::OneStop,
             QSerialPort::FlowControl flowControl = QSerialPort::NoFlowControl );
 
+    Sender( const Sender &sender );
+
     ~Sender();
+
+    QString getPortName() const;
+    QSerialPort::BaudRate getBaudRate() const;
+    QSerialPort::DataBits getDataBist() const;
+    QSerialPort::Parity getParity() const;
+    QSerialPort::StopBits getStopBits() const;
+    QSerialPort::FlowControl getFlowControl() const;
 
     void setPortName( const QString &portName )
     {

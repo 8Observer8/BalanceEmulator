@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QTimer>
 #include <QMainWindow>
 #include "Sender.h"
 
@@ -18,8 +19,7 @@ public:
 
 private slots:
     void on_sendButton_clicked();
-    void slotSetSettings( const QString &portName,
-                          const QString &portSpeed );
+    void slotSetSettings( const Sender &sender );
 
     void on_actionSettings_triggered();
 
@@ -31,6 +31,7 @@ private:
 private:
     Ui::MainWindow *ui;
     Sender *m_sender;
+    QTimer m_timer;
 };
 
 #endif // MAINWINDOW_H
